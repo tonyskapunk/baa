@@ -125,6 +125,13 @@ print_asciiart() {
 }
 
 
+ #f the script is executed without arguments, print help
+if [ "$#" -eq 0 ]; then
+    ( echo "ERROR Missing arguments!" >&2 ) \
+    && ( print_help >&2 ) \
+    && exit 1;
+fi;
+
 while getopts hprs:vV flag; do
   validate_tools
   case ${flag} in
