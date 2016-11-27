@@ -86,7 +86,8 @@ search_asciiart() {
     if [[ -n ${entry} ]]; then
       if [[ ${entry} =~ ^[0-9]+$ ]]; then
         if [[ ${entry} -gt 0 && ${entry} -le ${num_match} ]]; then
-            uri=$( sed -n ${entry}'s/\s/%20/gp' <<<"${match}" |
+            uri=$( sed -n ${entry}p <<<"${match}" |
+                   sed -e 's/ /%20/g' |
                    awk -F, '{print $NF}' |
                    tr -d \')
             ${CURL} ${CURL_OPTS} "${SITE_URL}/${uri}" |
