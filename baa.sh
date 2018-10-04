@@ -125,6 +125,11 @@ print_asciiart() {
   rm -f ${tmpf}
 }
 
+if [[ "$#" -eq 0 ]]; then
+    echo "ERROR Missing arguments!"
+    print_help
+    exit 1
+fi
 
 while getopts hprs:vV flag; do
   validate_tools
